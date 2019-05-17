@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>用R&#43;Markdown制作指标分析报告  &middot; My blog</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="description" content="" />
+
+<meta name="keywords" content="">
+
+
+<meta property="og:title" content="用R&#43;Markdown制作指标分析报告  &middot; My blog ">
+<meta property="og:site_name" content="My blog"/>
+<meta property="og:url" content="/1/01/01/%E7%94%A8r-markdown%E5%88%B6%E4%BD%9C%E6%8C%87%E6%A0%87%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/" />
+<meta property="og:locale" content="en">
+
+<meta property="content-source" content="post\2019-5-17-rmarkdownreport.md">
+<meta property="og:type" content="article" />
+<meta property="og:description" content=""/>
+<meta property="og:article:published_time" content="0001-01-01T00:00:00Z" />
+<meta property="og:article:modified_time" content="0001-01-01T00:00:00Z" />
+
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@Jiangue" />
+<meta name="twitter:creator" content="@Jiangue" />
+<meta name="twitter:title" content="用R&#43;Markdown制作指标分析报告" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:url" content="/1/01/01/%E7%94%A8r-markdown%E5%88%B6%E4%BD%9C%E6%8C%87%E6%A0%87%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/" />
+<meta name="twitter:domain" content="/">
+  
+
+  
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "用R\x2bMarkdown制作指标分析报告",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+?rel=author"
+    },
+    "datePublished": "0001-01-01",
+    "description": "",
+    "wordCount":  2238 
+  }
+</script>
+  
+
+
+
+<link rel="canonical" href="/1/01/01/%E7%94%A8r-markdown%E5%88%B6%E4%BD%9C%E6%8C%87%E6%A0%87%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
+<link rel="icon" href="/favicon.png">
+<meta name="generator" content="Hugo 0.55.5" />
+
+  <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+    
+    
+
+
+
+
+
+
+
+
+    
+    
+
+
+
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bundle.min.bb13004e89c55229f44c28b053f616377d69e1f8c8fb51f4b31555c34de1f5f2588b9179ed4bd8778aa56ea6f9c714a3fa539260d6bd66ec73fda2a289fa2104.css" >
+
+</head>
+<body data-ng-app="myapp" data-ng-controller="MyController" data-ng-mouseleave="MouseLeave($event)">
+    <header id="main-header">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        
+          
+          <a class="navbar-brand-img" href="/">
+            <img alt="My awsome blog" src="http://blog.appernetic.io/images/apperneticlogo.png">
+            
+          </a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            
+            
+            <li class="">
+              
+		<a href="https://appernetic.io/app/#/about"  title="About">
+                  <i class='fa fa-road'></i>
+                  About
+                </a>
+              
+            </li>
+            
+            <li class="">
+              
+		<a href="/post/"  title="Blog">
+                  
+                  Blog
+                </a>
+              
+            </li>
+            
+            <li class="">
+              
+		<a href="https://appernetic.io/app/"  title="Dashboard">
+                  
+                  Dashboard
+                </a>
+              
+            </li>
+            
+            <li class="">
+              
+		<a href="/showcase/"  title="Showcase">
+                  
+                  Showcase
+                </a>
+              
+            </li>
+            
+            
+              
+          </ul>
+        </div>
+        
+      </div>
+    </nav>
+  </header>
+
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="title-metas text-center">
+
+    <h1>用R&#43;Markdown制作指标分析报告
+</h1>
+
+    <div class="metas">
+<small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="0001-01-01">1 Jan, 0001</time>
+</small>
+
+
+  <small>
+    &middot; by Xuejianguo
+  
+  &middot; Read in about 5 min
+  &middot; (2238 words)
+  &middot; 
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=%2f1%2f01%2f01%2f%25E7%2594%25A8r-markdown%25E5%2588%25B6%25E4%25BD%259C%25E6%258C%2587%25E6%25A0%2587%25E5%2588%2586%25E6%259E%2590%25E6%258A%25A5%25E5%2591%258A%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=%e7%94%a8R%2bMarkdown%e5%88%b6%e4%bd%9c%e6%8c%87%e6%a0%87%e5%88%86%e6%9e%90%e6%8a%a5%e5%91%8a&amp;url=%2f1%2f01%2f01%2f%25E7%2594%25A8r-markdown%25E5%2588%25B6%25E4%25BD%259C%25E6%258C%2587%25E6%25A0%2587%25E5%2588%2586%25E6%259E%2590%25E6%258A%25A5%25E5%2591%258A%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=%2f1%2f01%2f01%2f%25E7%2594%25A8r-markdown%25E5%2588%25B6%25E4%25BD%259C%25E6%258C%2587%25E6%25A0%2587%25E5%2588%2586%25E6%259E%2590%25E6%258A%25A5%25E5%2591%258A%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=%2f1%2f01%2f01%2f%25E7%2594%25A8r-markdown%25E5%2588%25B6%25E4%25BD%259C%25E6%258C%2587%25E6%25A0%2587%25E5%2588%2586%25E6%259E%2590%25E6%258A%25A5%25E5%2591%258A%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f1%2f01%2f01%2f%25E7%2594%25A8r-markdown%25E5%2588%25B6%25E4%25BD%259C%25E6%258C%2587%25E6%25A0%2587%25E5%2588%2586%25E6%259E%2590%25E6%258A%25A5%25E5%2591%258A%2f&amp;title=%e7%94%a8R%2bMarkdown%e5%88%b6%e4%bd%9c%e6%8c%87%e6%a0%87%e5%88%86%e6%9e%90%e6%8a%a5%e5%91%8a" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=%e7%94%a8R%2bMarkdown%e5%88%b6%e4%bd%9c%e6%8c%87%e6%a0%87%e5%88%86%e6%9e%90%e6%8a%a5%e5%91%8a&amp;body=Check out this site %2f1%2f01%2f01%2f%25E7%2594%25A8r-markdown%25E5%2588%25B6%25E4%25BD%259C%25E6%258C%2587%25E6%25A0%2587%25E5%2588%2586%25E6%259E%2590%25E6%258A%25A5%25E5%2591%258A%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  </small>
+
+<div class="margin-10">
+
+</div>
+
+<br>
+</div>
+
+  </div>
+</div>
+
+
+      <div class="content">
+  
+
+<p>R语言是一门免费且功能强大的数据分析编程语言，Markdown是一种简单但应用广泛的文本格式标记语言，两者结合便是报告制作利器<a href="https://rmarkdown.rstudio.com/index.html">RMarkdown</a>. 网上介绍使用RMarkdown生成数据报告的总结资料很多，但实际学习起来还是难免遇到新的问题，特此自己也总结一下，以供以后自己或朋友们参考。</p>
+
+<h1 id="基本需求">基本需求</h1>
+
+<p>原始数据为每月不同区域内不同生产单位的多台设备运行数据，需要生成不同区域的当月指标完成情况，主要包括：
+* 此区域指标目标值及本月实际完成值
+* 此区域内各单位指标实际完成情况
+* 各指标下未达成目标值设备列表
+* 未达目标设备原始运行记录表
+* 未达成原因分析及改进措施</p>
+
+<p>由于最后一项需要各区域人员自行分析撰写，倒数第二项需要在分析后删除，所以输出文件需要为word格式</p>
+
+<h1 id="工具和语言">工具和语言</h1>
+
+<h2 id="软件">软件</h2>
+
+<ul>
+<li>RStudio</li>
+</ul>
+
+<p>编写代码和生成报告</p>
+
+<ul>
+<li>Pandoc</li>
+</ul>
+
+<p>生成报告的后台支持</p>
+
+<ul>
+<li>Word</li>
+</ul>
+
+<p>查看结果和编辑参考模版</p>
+
+<ul>
+<li>Typora</li>
+</ul>
+
+<p>查看Markdown语法及实验渲染结果，熟悉者可不用</p>
+
+<ul>
+<li>TeXworks</li>
+</ul>
+
+<p>实验Latex渲染结果，编写预定义文件</p>
+
+<h2 id="语法">语法</h2>
+
+<ul>
+<li><a href="https://www.rdocumentation.org/">R</a></li>
+</ul>
+
+<p>数据处理</p>
+
+<ul>
+<li><a href="https://pandoc.org/MANUAL.html#pandocs-markdown">Markdown</a></li>
+</ul>
+
+<p>文字输出</p>
+
+<ul>
+<li><a href="https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf">YAML</a></li>
+</ul>
+
+<p>定义文件渲染参数</p>
+
+<ul>
+<li><a href="https://www.ctan.org/">LATEX​</a></li>
+</ul>
+
+<p><code>.PDF</code>格式文件渲染，输出word时，仅<a href="https://liam.page/2014/09/08/latex-introduction/">公式/符号</a>类可用</p>
+
+<ul>
+<li><a href="https://html.com/">Html</a></li>
+</ul>
+
+<p>网页文件格式定义，虽然有些Markdown语法也支持html定义，但在输出word时，可用语法很少，仅发现注释和换行有效</p>
+
+<ul>
+<li><a href="https://docs.microsoft.com/zh-cn/office/dev/add-ins/word/create-better-add-ins-for-word-with-office-open-xml">openXML</a></li>
+</ul>
+
+<p><code>.docx</code>格式文件语法，但直接输出格式很繁琐</p>
+
+<ul>
+<li>其他</li>
+</ul>
+
+<p>如用于字符匹配的<a href="https://www.regular-expressions.info/rlanguage.html">regular expression</a>、用于数据关系的<a href="https://cran.r-project.org/doc/manuals/R-intro.html#Statistical-models-in-R">R Formulae</a>等</p>
+
+<h2 id="r包">R包</h2>
+
+<ul>
+<li>R Markdown、knitr</li>
+</ul>
+
+<p>报告生成</p>
+
+<ul>
+<li>shiny UI</li>
+</ul>
+
+<p>界面</p>
+
+<ul>
+<li>data.table、dplyr</li>
+</ul>
+
+<p>数据处理</p>
+
+<ul>
+<li>ggplot2</li>
+</ul>
+
+<p>绘图</p>
+
+<ul>
+<li>flextable</li>
+</ul>
+
+<p>表格</p>
+
+<h1 id="基本流程">基本流程</h1>
+
+<h2 id="报告制作流程">报告制作流程</h2>
+
+<p>在UI界面中选择当月设备指标表和运行记录表；根据区域列表循环赋参运行<code>Render</code>函数；被调用的<code>.Rmd</code>文件接收参数，进行数据处理，并和文字生成<code>.md</code>文件；后台自动调用pandoc将.md文件转化为<code>.docx</code>文件</p>
+
+<p><img src="https://d33wubrfki0l68.cloudfront.net/61d189fd9cdf955058415d3e1b28dd60e1bd7c9b/b739c/lesson-images/rmarkdownflow.png" alt="" /></p>
+
+<h2 id="rmd文件生成流程">Rmd文件生成流程</h2>
+
+<p>在RStudio菜单中，点击新建R Markdown文件; 在弹出界面选择输出格式为Word，即可打开新建的<code>.Rmd</code>文件进行编辑；命名保存后，在RStudio菜单中，点击Knit to Word，即可生成Word文件；利用office word 软件打开生成的word文件，可编辑样式格式、页眉页脚等；再次新建<code>.Rmd</code>文件后，可在头文件中定义此文件为参考样式文件，则新生成的Word文件可得到相同的样式格式、页眉页脚<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>。</p>
+
+<h1 id="rmd文件基本结构">Rmd文件基本结构</h1>
+
+<p><img src="D:JianguoYun我的坚果云书签1557283507032.png" alt="1557283507032" /></p>
+
+<p><img src="D:JianguoYun我的坚果云书签1557293860373.png" alt="1557293860373" /></p>
+
+<p><code>.Rmd</code>一般由三部分组成，文件头（YAML Header)、文本（Markdown Text)和代码块（Code Chunk), 每一部分需要遵循不同的语法。</p>
+
+<h2 id="文件头">文件头</h2>
+
+<p>定义文档元数据（如标题、作者、时间等），输出格式参数（output，如文档类型、参考样式文件、是否包含目录等）和变量参数（params，用于外部调用时传递参数）等。详细设置可参考RMarkdown手册<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>或Pandoc手册<sup class="footnote-ref" id="fnref:3"><a href="#fn:3">3</a></sup>。</p>
+
+<h2 id="文本">文本</h2>
+
+<p>用于输入报告文本，可利用Markdown语法进行标记，可输入Latex语法表达的符号和公式，可使用用R语言表达式动态输入可变量，也可输入后续转化格式认可的语法（如OpenXML、HTML、LATEX，仅在相应格式下有效）。详见RMarkdown手册<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup></p>
+
+<h2 id="代码块">代码块</h2>
+
+<p>代码块内R代码可进行数据运算、输出字符、图表等。其用asis方式输出结果，也可被文本部分语法解析。详见Knitr手册<sup class="footnote-ref" id="fnref:4"><a href="#fn:4">4</a></sup></p>
+
+<h1 id="文档内容实现">文档内容实现</h1>
+
+<h2 id="标题">标题</h2>
+
+<p>Markdown中可以用headings 格式定义无编号标题：</p>
+
+<pre><code class="language-markdown"># A level-one heading 
+##  A level-two heading
+</code></pre>
+
+<p>可通过修改参考文件相应样式下的字体（字号、颜色）、段落（间距、段前分页、编号）等，实现所需的呈现效果。</p>
+
+<h2 id="正文">正文</h2>
+
+<p>普通文本正常书写即可，其样式也可在参考文件中修改。局部强调、突出等可用Markdown格式修饰：</p>
+
+<pre><code class="language-markdown">*Empahasis*
+**Strong**
+~~Strikethrough~~
+</code></pre>
+
+<p>对于引用的变量数据可以通过inline R code格式:<code>`r command`</code>在段落中替换输出：</p>
+
+<pre><code class="language-markdown">Today is `r Sys.Date()`.
+</code></pre>
+
+<h2 id="公式">公式</h2>
+
+<p>行间公式用<code>$...$</code>将公共括起来，块间公式用<code>$$...$$</code>括起来，中间可用Latex语法书写公式:</p>
+
+<pre><code class="language-latex">The value of $h(\theta)$ can be calculated
+$$h(\theta) = \sum_{j = 0} ^n \theta_j x_j$$
+</code></pre>
+
+<blockquote>
+<p>The value of $h(\theta)$ can be calculated:</p>
+
+<p>$$h(\theta) = \sum_{j = 0} ^n \theta_j x_j$$</p>
+</blockquote>
+
+<h2 id="格式文本">格式文本</h2>
+
+<p>如果输入的正文文本符合后续转化格式的语法，则可进一步得到解析。如输入的HTML语句</p>
+
+<pre><code class="language-html">&lt;p style=&quot;font-family:arial;color:red;font-size:30px;&quot;&gt;HTML: red.&lt;/p&gt;
+</code></pre>
+
+<p>在输出为<code>html</code>格式时，将按其语法解析为</p>
+
+<blockquote>
+<p style="font-family:arial;color:red;font-size:30px;">HTML: red.</p>
+</blockquote>
+
+<p>在输出为其它格式时一般无法得到相应效果，如在wordw仅输出正文文字，字体、颜色、字号等无效。</p>
+
+<p>相应的，如果输入LATEX命令文本，</p>
+
+<pre><code class="language-latex">\LaTeX
+\newpage
+</code></pre>
+
+<p>则在输出为<code>pdf</code>格式时，将其解析为$\LaTeX$显示和分页控制效果。</p>
+
+<p>同样道理，在输入openxml文本时</p>
+
+<pre><code class="language-xml">​```{=openxml}
+&lt;w:p&gt;
+    &lt;/w:pPr&gt;
+    &lt;w:r&gt;
+      &lt;w:br w:type=&quot;page&quot;/&gt;
+    &lt;/w:r&gt;
+  &lt;/w:p&gt;
+​```
+</code></pre>
+
+<p>输出输出转化为<code>docx</code>格式，则在相应位置产生分页效果。但相比上述html和pdf命令，繁琐且难掌握，一般不用。</p>
+
+<h2 id="绘图">绘图</h2>
+
+<p>图表输出可在代码块中用<code>plot</code>或<code>ggplot</code>函数输出，输出的参数，可在chunk option里面定义。</p>
+
+<p>也可用RMarkdown语法插入图片链接，或用R 代码<code>knitr::include_graphics</code>导入后再输出。</p>
+
+<h2 id="表格">表格</h2>
+
+<p>表格输出简单的方法是用<code>knitr::kable()</code>生成表格。因为本次需求所需表格样式比较复杂，如多表头、合并单元格、未达标数字标红等，因此选用了flextable包来生成表格，但其在循环输出时存在格式不符的问题，需要将结果收集起来，再统一输出<sup class="footnote-ref" id="fnref:5"><a href="#fn:5">5</a></sup>。</p>
+
+<pre><code class="language-R">​```{r}
+data(cars)
+speed &lt;- unique(cars$speed)
+results &lt;- character()
+for (v in 1:length(speed)) {
+  carspd &lt;- cars[which(cars$speed == speed[v]),]
+  tb &lt;- regulartable(carspd)
+
+  # Generate a figure in a temporary file
+  filename &lt;- tempfile(fileext = &quot;.png&quot;)
+  png(filename)
+  hist(carspd$dist)
+  dev.off()
+
+  # Put everything into the results vector
+  results &lt;- c(results, &quot;\n\nThis is the table for v =&quot;, v,
+                        knit_print(tb),
+                        knitr:::wrap(include_graphics(filename)))
+
+}
+asis_output(results)
+knit_print(tb)
+​```
+</code></pre>
+
+<h2 id="页面">页面</h2>
+
+<p>页边距、页眉、页脚等，需要在参考文件中设定</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">&lt; <a href="https://rmarkdown.rstudio.com/articles_docx.html&gt;">https://rmarkdown.rstudio.com/articles_docx.html&gt;</a>
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:2"><a href="https://bookdown.org/yihui/rmarkdown">https://bookdown.org/yihui/rmarkdown</a>
+ <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+<li id="fn:3"><a href="https://pandoc.org/MANUAL.html#templates">https://pandoc.org/MANUAL.html#templates</a>
+ <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
+<li id="fn:4"><a href="https://yihui.name/knitr/options/">https://yihui.name/knitr/options/</a>
+ <a class="footnote-return" href="#fnref:4"><sup>[return]</sup></a></li>
+<li id="fn:5"><a href="https://stackoverflow.com/questions/53629692/how-to-knit-print-flextable-with-loop-in-a-rmd-file">https://stackoverflow.com/questions/53629692/how-to-knit-print-flextable-with-loop-in-a-rmd-file</a>
+ <a class="footnote-return" href="#fnref:5"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+</div>
+
+
+      <footer>
+  
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=%2f1%2f01%2f01%2f%25E7%2594%25A8r-markdown%25E5%2588%25B6%25E4%25BD%259C%25E6%258C%2587%25E6%25A0%2587%25E5%2588%2586%25E6%259E%2590%25E6%258A%25A5%25E5%2591%258A%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=%e7%94%a8R%2bMarkdown%e5%88%b6%e4%bd%9c%e6%8c%87%e6%a0%87%e5%88%86%e6%9e%90%e6%8a%a5%e5%91%8a&amp;url=%2f1%2f01%2f01%2f%25E7%2594%25A8r-markdown%25E5%2588%25B6%25E4%25BD%259C%25E6%258C%2587%25E6%25A0%2587%25E5%2588%2586%25E6%259E%2590%25E6%258A%25A5%25E5%2591%258A%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=%2f1%2f01%2f01%2f%25E7%2594%25A8r-markdown%25E5%2588%25B6%25E4%25BD%259C%25E6%258C%2587%25E6%25A0%2587%25E5%2588%2586%25E6%259E%2590%25E6%258A%25A5%25E5%2591%258A%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=%2f1%2f01%2f01%2f%25E7%2594%25A8r-markdown%25E5%2588%25B6%25E4%25BD%259C%25E6%258C%2587%25E6%25A0%2587%25E5%2588%2586%25E6%259E%2590%25E6%258A%25A5%25E5%2591%258A%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f1%2f01%2f01%2f%25E7%2594%25A8r-markdown%25E5%2588%25B6%25E4%25BD%259C%25E6%258C%2587%25E6%25A0%2587%25E5%2588%2586%25E6%259E%2590%25E6%258A%25A5%25E5%2591%258A%2f&amp;title=%e7%94%a8R%2bMarkdown%e5%88%b6%e4%bd%9c%e6%8c%87%e6%a0%87%e5%88%86%e6%9e%90%e6%8a%a5%e5%91%8a" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=%e7%94%a8R%2bMarkdown%e5%88%b6%e4%bd%9c%e6%8c%87%e6%a0%87%e5%88%86%e6%9e%90%e6%8a%a5%e5%91%8a&amp;body=Check out this site %2f1%2f01%2f01%2f%25E7%2594%25A8r-markdown%25E5%2588%25B6%25E4%25BD%259C%25E6%258C%2587%25E6%25A0%2587%25E5%2588%2586%25E6%259E%2590%25E6%258A%25A5%25E5%2591%258A%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      
+  
+    <nav><ul class="pager">
+    
+
+    
+      <li class="next">
+        <a href="/2015/07/23/hello-r-markdown/" title="Hello R Markdown">
+            Next <span aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+    
+    </ul> </nav>
+  
+
+
+</div>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  (function() {
+    
+    
+    if (window.location.hostname == "localhost")
+      return;
+
+    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
+    dsq.src = '//shortname.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+</div>
+
+</footer>
+
+    </div>
+    
+      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <div>
+  
+
+    <div class="section">
+      <header><div class="title"><b>Latest Posts</b></div></header>
+      <div class="content">
+        <ul>
+        
+          <li>
+          <a href="/2016/04/24/what-is-hugo/">What is Hugo?</a>
+          </li>
+        
+          <li>
+          <a href="/2016/04/21/introduction/">Introduction</a>
+          </li>
+        
+          <li>
+          <a href="/2015/07/23/hello-r-markdown/">Hello R Markdown</a>
+          </li>
+        
+          <li>
+          <a href="/1/01/01/%E7%94%A8r-markdown%E5%88%B6%E4%BD%9C%E6%8C%87%E6%A0%87%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/">用R&#43;Markdown制作指标分析报告</a>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+
+    
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>tag</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="/tags/plot">plot</a></li><li><a href="/tags/r-markdown">r-markdown</a></li><li><a href="/tags/regression">regression</a></li>
+          </ul>
+        </div>
+      </div>
+      
+    
+      
+      
+    
+
+</div>
+
+      </div>
+    
+  </div>
+</div>
+    
+<footer class="footer hidden-print">
+  <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+           <div class="pull-left">
+  <a class="toplink" href="javascript:" id="return-to-top">back to top</a>
+</div>
+<div class="pull-right">
+
+<a href="/disclaimer/">Disclaimer</a> <i>&middot;</i>
+
+<a href="/terms/">Terms</a> 
+
+</div>
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+              
+    
+<div class="container footline">
+    <small>
+  code with <i class='fa fa-heart'></i>
+
+</small>
+</div>
+
+
+    
+<div class="container copyright">
+    <small>
+  &copy; 2016 Copyright my blog
+
+  </small>
+</div>
+
+
+
+        </div>
+    </div>
+  </div>
+</footer>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  var _gaq=[['_setAccount','Your Google Analytics tracking code'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<script>
+var ENABLE_POPOVER =  null , 
+EXPIRE_COOKIE =  null , 
+SHOW_MODAL_TIMEOUT =  null , 
+MOUSE_LEAVE =  null , 
+MODAL_SIZE =  null , 
+POST_URL =  null , 
+SIGNUP_HEADER =  null ,
+HEADER_IMAGE =  null ,
+IMG_DESCRIPTION =  null ,
+SIGNUP_TEXT =  null ,
+INPUT_PLACEHOLDER =  null ,
+SUBMIT_BUTTON =  null ,
+SUCCESS_MESSAGE =  null ,
+ERROR_MESSAGE =  null ,
+OPTIN =  null ,
+COOKIE_NAME =  null ,
+CONTENTLANGUAGE =  null ; 
+</script>
+
+
+
+
+
+
+
+<script  src="/js/bundle.min.a0761bf8598edda2bb2c0e348a3160c418f2bc30908f40740ee7f30dabbdeed27d82ee58e16400badd1ae84ce7be7ce10702c9be216abe5de1cb497de995e850.js" ></script>
+
+
+
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/config/TeX-AMS-MML_HTMLorMML.js"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    for(var all in MathJax.Hub.getAllJax()) {
+        all.SourceElement().parentNode.className += ' has-jax';
+
+    }
+});
+</script>
+
+
+
+
+
+  </body>
+</html>
+
